@@ -1,7 +1,5 @@
 # AI Olympics: 100m Sprint Simulation
 
-![AI Olympics Banner](https://github.com/username/ai-olympics/raw/main/docs/images/ai_olympics_banner.png)
-
 ## Project Overview
 
 AI Olympics is a reinforcement learning simulation that pits intelligent agents against each other in a virtual 100-meter sprint. The project compares how machine learning agents perform against traditional rule-based agents, creating an environment where different strategies can be tested and visualized.
