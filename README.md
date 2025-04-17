@@ -51,13 +51,13 @@ pip install -r requirements.txt
 ### PyGame Implementation
 ```bash
 cd Pygame\ Implementation
-python main.py
+python pygame_implementation.py
 ```
 
 ### Gymnasium Implementation
 ```bash
 cd Gymnasium\ Implementation
-python main.py
+python gym_implementation.py
 ```
 
 ## How It Works
