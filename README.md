@@ -1,81 +1,134 @@
-# 100m Sprint Reinforcement Learning Simulation
+# AI Olympics: 100m Sprint Simulation
+
+![AI Olympics Banner](https://github.com/username/ai-olympics/raw/main/docs/images/ai_olympics_banner.png)
 
 ## Project Overview
 
-This project implements a reinforcement learning environment that simulates a 100-meter sprint race with multiple agents competing against each other. The simulation models realistic sprint dynamics including acceleration, energy management, fatigue, and air resistance to create a competitive racing environment.
+AI Olympics is a reinforcement learning simulation that pits intelligent agents against each other in a virtual 100-meter sprint. The project compares how machine learning agents perform against traditional rule-based agents, creating an environment where different strategies can be tested and visualized.
 
-## Key Features
+The simulation includes:
+- Two Independent Q-Learning (IQL) agents that learn optimal racing strategies
+- Two rule-based agents: "Steady" (consistent pace) and "Explosive" (fast start)
+- Realistic physics including fatigue, air resistance, and energy management
+- Interactive visualization of races with real-time performance tracking
 
-- **Multi-Agent Environment**: Simulates races with 4 agents (2 learning agents and 2 rule-based agents)
-- **Reinforcement Learning**: Uses Independent Q-Learning (IQL) for adaptive agent behavior
-- **Realistic Physics**: Models velocity, acceleration, energy consumption, and fatigue
-- **Rule-Based Strategies**: Includes pre-defined "Steady" and "Explosive" racing strategies
-- **Performance Analysis**: Tracks and visualizes race statistics and learning progress
-- **Multiple Rendering Options**: Supports text-based (ANSI), graphical, and animated visualizations
+## Features
 
-## Technical Details
+### Realistic Sprint Simulation
+- Physically accurate modeling of sprint mechanics
+- Energy management system (sprinters manage their stamina)
+- Air resistance and fatigue factors
+- Multi-agent environment where strategies interact
 
-### Environment
+### Two Implementations
+- **PyGame-based:** An interactive, visually rich simulation
+- **OpenAI Gym-based:** A standardized environment for reinforcement learning research
 
-The `SprintEnv` class is built using the OpenAI Gymnasium framework and simulates:
-- A configurable race track (default 100m)
-- Physical parameters like air resistance, fatigue factors, and recovery rates
-- Agent capabilities with randomized variation (max speed, acceleration, stamina)
-- State tracking for position, velocity, energy, and race completion
+### Reinforcement Learning
+- Independent Q-Learning algorithms
+- Dynamic exploration-exploitation balance
+- State space representing position, velocity, energy, and track position
+- Sophisticated reward function balancing speed and energy conservation
+
+### Visualization
+- Real-time race animation
+- Performance charts and statistics
+- Comparative analysis of different agent types
+
+## Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/Zuru07/Bolt.rl.git
+cd Bolt.rl
+```
+
+2. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+## Running the Simulation
+
+### PyGame Implementation
+```bash
+python pygame_implementation.py
+```
+
+### Gym Implementation
+```bash
+python gym_implementation.py
+```
+
+## How It Works
 
 ### Agent Types
 
-1. **Q-Learning Agents (2)**: Learn optimal effort strategies through experience
-   - Use discretized state spaces for position, velocity, energy, and relative position
-   - Apply epsilon-greedy exploration with decaying exploration rate
-   - Update Q-values through TD learning
+#### Q-Learning Agents
+The reinforcement learning agents learn through experience to optimize their performance, balancing speed and energy consumption. They improve with each race through:
+- Discretized state space (position, velocity, energy)
+- 6 effort levels (0.0, 0.2, 0.4, 0.6, 0.8, 1.0)
+- Reward function based on race completion time and position
 
-2. **Rule-Based Agents (2)**:
-   - **Steady**: Maintains consistent medium-high effort throughout race
-   - **Explosive**: Starts with maximum effort, then maintains moderate effort
+#### Rule-Based Agents
 
-### Learning Process
+1. **Steady Agent:** Maintains a consistent effort level (0.7), representing a methodical racing approach.
 
-The simulation includes:
-- Training phase with configurable number of episodes
-- Evaluation phase for comparing trained agents against rule-based strategies
-- Progress tracking for rewards, exploration rates, and Q-table growth
-- Performance metrics including win rates, average positions, and finish times
+2. **Explosive Agent:** Starts with maximum effort (1.0) and then reduces to moderate effort (0.6), mimicking real sprinter strategies.
 
-### Visualization
+### Physics Model
 
-Multiple visualization options are provided:
-- Real-time text-based race progress with colorized output
-- Interactive graphical rendering of race progress
-- Statistical plots for race outcomes and training metrics
-- Learning curve visualization for reinforcement learning progress
+The simulation uses a realistic physics model that incorporates:
+- Acceleration proportional to effort and current energy
+- Air resistance proportional to velocity
+- Energy depletion based on effort squared
+- Maximum speed based on runner capabilities
 
-## Results Analysis
+### Training Process
 
-After training, the system generates comprehensive statistics including:
-- Win counts and podium appearances
-- Average finish positions and times
-- Learning progression metrics
-- Agent performance comparisons
+1. **Exploration Phase:** Agents initially explore random actions (high ε value)
+2. **Exploitation Phase:** Gradually shift to using learned strategies (decreasing ε)
+3. **Testing Phase:** Final evaluation with zero exploration
 
-## Usage
+## Results and Analysis
 
-The main function runs a complete simulation with:
-1. Training phase (default 1000 episodes)
-2. Evaluation phase (default 100 episodes)
-3. Results visualization and statistical analysis
+After training, the system evaluates the agents' performance over 100 test episodes and produces statistics including:
+- Win count and win rate
+- Average finish position
+- Average completion time
+- Energy management efficiency
 
-## Dependencies
+## Project Structure
 
-- gymnasium: For the reinforcement learning environment
-- numpy: For numerical operations
-- matplotlib: For visualization and plotting
-- colorama: For colored terminal output
+```
+ai-olympics/
+├── pygame_implementation.py     # PyGame version of the simulation
+├── gym_implementation.py        # OpenAI Gym version
+├── runners.gif                  # Sprite animation for runners
+├── requirements.txt             # Required dependencies
+└── LICENSE                      # MIT License
+```
 
-## Applications
+### Hyperparameters
 
-This simulation can be used for:
-- Studying reinforcement learning in competitive multi-agent environments
-- Analyzing different racing strategies for sprint events
-- Educational demonstrations of agent learning and adaptation
-- Testing optimization algorithms in physics-based simulations
+You can customize the simulation by modifying these key parameters:
+
+- `ALPHA` (0.1): Learning rate for Q-learning
+- `GAMMA` (0.95): Discount factor for future rewards
+- `EPSILON_START` (1.0): Initial exploration rate
+- `EPSILON_DECAY` (0.995): Exploration decay rate
+- `TRAINING_EPISODES` (1000): Number of training episodes
+- `FATIGUE_FACTOR` (0.05): Energy consumption rate
+- `RECOVERY_FACTOR` (0.01): Energy recovery rate
+
+### State Space Discretization
+
+Adjust the state space granularity by changing:
+- `POSITION_BINS` (10): Number of position buckets
+- `SPEED_BINS` (10): Number of velocity buckets
+- `ENERGY_BINS` (10): Number of energy level buckets
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
