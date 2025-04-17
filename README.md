@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-AI Olympics is a reinforcement learning simulation that pits intelligent agents against each other in a virtual 100-meter sprint. The project compares how machine learning agents perform against traditional rule-based agents, creating an environment where different strategies can be tested and visualized.
+AI Olympics is a reinforcement learning simulation that pits intelligent agents against each other in a virtual 100-meter sprint. The project compares how RL agents perform against traditional rule-based agents, creating an environment where different strategies can be tested and visualized.
 
 The simulation includes:
 - Two Independent Q-Learning (IQL) agents that learn optimal racing strategies
@@ -20,7 +20,7 @@ The simulation includes:
 
 ### Two Implementations
 - **PyGame-based:** An interactive, visually rich simulation
-- **OpenAI Gym-based:** A standardized environment for reinforcement learning research
+- **Gymnasium Implementation:** A standardized environment for reinforcement learning research
 
 ### Reinforcement Learning
 - Independent Q-Learning algorithms
@@ -50,12 +50,14 @@ pip install -r requirements.txt
 
 ### PyGame Implementation
 ```bash
-python pygame_implementation.py
+cd Pygame\ Implementation
+python main.py
 ```
 
-### Gym Implementation
+### Gymnasium Implementation
 ```bash
-python gym_implementation.py
+cd Gymnasium\ Implementation
+python main.py
 ```
 
 ## How It Works
@@ -99,12 +101,12 @@ After training, the system evaluates the agents' performance over 100 test episo
 ## Project Structure
 
 ```
-ai-olympics/
-├── pygame_implementation.py     # PyGame version of the simulation
-├── gym_implementation.py        # OpenAI Gym version
-├── runners.gif                  # Sprite animation for runners
-├── requirements.txt             # Required dependencies
-└── LICENSE                      # MIT License
+Bolt.rl/
+├── Gymnasium Implementation/   # Standardized environment for RL research
+├── Pygame Implementation/      # Interactive visualization version
+├── README.md                   # Project documentation
+├── requirements.txt            # Required dependencies
+└── LICENSE                     # MIT License
 ```
 
 ### Hyperparameters
@@ -128,5 +130,4 @@ Adjust the state space granularity by changing:
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
+This project is licensed under the MIT License - see the LICENSE file for details.
