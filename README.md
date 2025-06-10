@@ -37,7 +37,7 @@ The simulation includes:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/Zuru07/Bolt.rl.git
+git clone https://github.com/harshues04/Bolt.rl.git
 cd Bolt.rl
 ```
 
